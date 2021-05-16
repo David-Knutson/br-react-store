@@ -31,20 +31,21 @@ export const getProducts = () => {
       if (!response) {
         dispatch({
           type: PRODUCTS_ERROR,
+          payload: "There was an error when trying to fetch the product data",
         });
-        console.log("There was an error.");
+        console.log("NO RESPONSE FROM SERVER");
       } else {
         dispatch({
           type: PRODUCTS_SUCCESS,
-          // payload: response.data as ProductsEntity,
           payload: response.data,
         });
 
-        console.log("DATA PLOX", response.data);
+        console.log("RESPONSE", response.data);
       }
     } catch (error) {
       dispatch({
         type: PRODUCTS_ERROR,
+        payload: error,
       });
     }
   };

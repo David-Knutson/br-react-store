@@ -23,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = (props) => {
         <div className={classes.name}>
           {props.item.quantity}x {props.item.name}
         </div>
-        <div className={classes.price}>${props.item.price}</div>
+        <div className={classes.price}>${props.item.price} ea.</div>
         <div className={classes.xButton + " clickable"} onClick={removeItem}>
           <FaTrashAlt />
         </div>

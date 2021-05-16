@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Image, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../actions/ProductsActions";
+import { ShoppingCartItem } from "../../actions/ShoppingCartActionTypes";
 import { MOCKDATA } from "../../mockdata/MockData";
 import { RootStore } from "../../Store";
 import CenteredSpinnerComponent from "../CenteredSpinner";
@@ -28,20 +29,21 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
     (state: RootStore) => state.products
   );
 
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
   //====================================================================
   const productDataArray = MOCKDATA.filter(
     (product) => product.id === productId
   );
   const productData = productDataArray[0];
-  console.log("productAData", productData);
+  // console.log("productAData", productData);
 
   //====================================================================
 
-  const addProductToCart = () => {
-    console.log("Added the product to your cart");
+  const addProductToCart = (cartItem: ShoppingCartItem) => {
+    console.log("Item added to cart", cartItem);
+    //show side panel
   };
 
   if (loading) {
@@ -89,7 +91,18 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
       </Row>
       <Row className="mt-4">
         <Col>
-          <Button size="lg" onClick={addProductToCart}>
+          <Button
+            size="lg"
+            onClick={() =>
+              addProductToCart({
+                id: productData.id,
+                name: productData.name,
+                quantity: quantity,
+                imageUrl: productData.imageUrl,
+                price: productData.price,
+              })
+            }
+          >
             Add to Cart
           </Button>
         </Col>

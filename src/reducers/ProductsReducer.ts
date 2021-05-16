@@ -27,12 +27,14 @@ const productsReducer = (
       return {
         ...state,
         loading: false,
+        error: action.payload,
       };
 
     case PRODUCTS_LOADING:
       return {
         ...state,
         loading: true,
+        error: undefined,
       };
     case PRODUCTS_SUCCESS:
       return {

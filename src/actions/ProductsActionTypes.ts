@@ -18,6 +18,7 @@ export interface ProductsLoading {
 
 export interface ProductsError {
   type: typeof PRODUCTS_ERROR;
+  payload: any;
 }
 
 export interface ProductsSuccess {

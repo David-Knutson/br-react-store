@@ -29,9 +29,8 @@ const Cart: React.FC<CartProps> = (props) => {
           <h3 className="my-4 text-muted">Your cart is empty</h3>
         </div>
       )}
-      {shoppingCartItems?.map((item) => (
-        <CartItem item={item} key={item.id} />
-      ))}
+      {shoppingCartItems &&
+        shoppingCartItems.map((item) => <CartItem item={item} key={item.id} />)}
       <Button
         block
         variant={cartEmpty ? "secondary" : "primary"}

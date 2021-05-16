@@ -21,7 +21,6 @@ export interface ShoppingCartAddItem {
 
 export interface ShoppingCartRemoveItem {
   type: typeof SHOPPING_CART_REMOVE_ITEM;
-  // payload: ShoppingCartItem;
   payload: number;
 }
 
