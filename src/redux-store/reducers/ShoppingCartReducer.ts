@@ -1,7 +1,9 @@
+import { isTemplateExpression } from "typescript";
 import {
   ShoppingCart,
   ShoppingCartDispatchTypes,
   SHOPPING_CART_ADD_ITEM,
+  // SHOPPING_CART_ADD_QUANTITY_TO_ITEM,
   SHOPPING_CART_EMPTY,
   SHOPPING_CART_REMOVE_ITEM,
 } from "../actions/ShoppingCartActionTypes";
@@ -46,32 +48,30 @@ const shoppingCartReducer = (
   action: ShoppingCartDispatchTypes
 ): ShoppingCart => {
   switch (action.type) {
-    // case SHOPPING_CART_ADD_ITEM:
-
-    //   let itemExistsInCart = state.shoppingCartItems?.find(
-    //     (item) => item.id === action.payload.id
-    //   );
-    //   //check if the action id exists in the addedItems
-    //   if (itemExistsInCart) {
-
-    //     return {
-    //       ...state,
-    //     };
-    //   } else {
-    //     return {
-
-    //       ...state,
-    //       shoppingCartItems: state.shoppingCartItems?.push(action.payload),
-    //     };
-    //   }
     case SHOPPING_CART_ADD_ITEM:
-      return {
-        ...state,
-        // shoppingCartItems: state.shoppingCartItems?.map((itemInCart) =>
-        //   itemInCart.id === action.payload.id ? { ...itemInCart } : itemInCart
-        // ),
-        shoppingCartItems: state.shoppingCartItems?.concat(action.payload),
-      };
+      if (
+        state.shoppingCartItems?.some((item) => item.id === action.payload.id)
+      ) {
+        return {
+          ...state,
+          shoppingCartItems: state.shoppingCartItems?.map((item) =>
+            item.id === action.payload.id
+              ? {
+                  name: item.name,
+                  id: item.id,
+                  price: item.price,
+                  quantity: item.quantity + action.payload.quantity,
+                  imageUrl: item.imageUrl,
+                }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          shoppingCartItems: state.shoppingCartItems?.concat(action.payload),
+        };
+      }
     case SHOPPING_CART_REMOVE_ITEM:
       // pretty confident this case is correct
       return {

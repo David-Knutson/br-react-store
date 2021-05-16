@@ -1,4 +1,6 @@
 export const SHOPPING_CART_ADD_ITEM = "SHOPPING_CART_ADD_ITEM";
+// export const SHOPPING_CART_ADD_QUANTITY_TO_ITEM =
+//   "SHOPPING_CART_ADD_QUANTITY_TO_ITEM";
 export const SHOPPING_CART_REMOVE_ITEM = "SHOPPING_CART_REMOVE_ITEM";
 export const SHOPPING_CART_EMPTY = "SHOPPING_CART_EMPTY";
 
@@ -19,6 +21,11 @@ export interface ShoppingCartAddItem {
   payload: ShoppingCartItem;
 }
 
+// export interface ShoppingCartAddQuantityToItem {
+//   type: typeof SHOPPING_CART_ADD_QUANTITY_TO_ITEM;
+//   payload: ShoppingCartItem;
+// }
+
 export interface ShoppingCartRemoveItem {
   type: typeof SHOPPING_CART_REMOVE_ITEM;
   payload: number;
@@ -30,5 +37,6 @@ export interface ShoppingCartEmpty {
 
 export type ShoppingCartDispatchTypes =
   | ShoppingCartAddItem
+  // | ShoppingCartAddQuantityToItem
   | ShoppingCartRemoveItem
   | ShoppingCartEmpty;

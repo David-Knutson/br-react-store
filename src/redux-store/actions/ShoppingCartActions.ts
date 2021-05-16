@@ -11,6 +11,11 @@ import {
 export const addItemToShoppingCart = (item: ShoppingCartItem) => {
   return (dispatch: Dispatch<ShoppingCartDispatchTypes>) => {
     try {
+      // trying new method
+      // if (vendors.some(e => e.Name === 'Magenic')) {
+      //   /* vendors contains the element we're looking for */
+      // }
+
       // if (item already exists in the cart) {
       //     increase it's cart quantity by the quanity added
       // } else {
