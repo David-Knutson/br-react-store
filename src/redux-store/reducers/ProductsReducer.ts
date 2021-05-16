@@ -1,4 +1,3 @@
-import { initialState } from "..";
 import {
   ProductsDispatchTypes,
   ProductsEntity,

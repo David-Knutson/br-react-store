@@ -1,4 +1,3 @@
-import { isTemplateExpression } from "typescript";
 import {
   ShoppingCart,
   ShoppingCartDispatchTypes,
@@ -73,7 +72,6 @@ const shoppingCartReducer = (
         };
       }
     case SHOPPING_CART_REMOVE_ITEM:
-      // pretty confident this case is correct
       return {
         ...state,
         shoppingCartItems: state.shoppingCartItems?.filter(
@@ -82,7 +80,6 @@ const shoppingCartReducer = (
       };
 
     case SHOPPING_CART_EMPTY:
-      // pretty confident this case is correct
       return {
         ...state,
         shoppingCartItems: [],

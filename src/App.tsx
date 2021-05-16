@@ -1,12 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 import MainSwitch from "./components/MainSwitch";
 
 function App() {
   return (
-    <Layout>
-      <MainSwitch />
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <MainSwitch />
+      </Layout>
+    </BrowserRouter>
   );
 }
 
