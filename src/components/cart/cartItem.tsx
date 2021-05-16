@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
-import { ShoppingCartItem } from "../../actions/ShoppingCartActionTypes";
+import { ShoppingCartItem } from "../../redux-store/actions/ShoppingCartActionTypes";
 import classes from "./cartItem.module.scss";
-import { removeItemFromCart } from "../../actions/ShoppingCartActions";
+import { removeItemFromCart } from "../../redux-store/actions/ShoppingCartActions";
 
 type CartItemProps = {
   item: ShoppingCartItem;

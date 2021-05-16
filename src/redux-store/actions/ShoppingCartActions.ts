@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import {
   ShoppingCartDispatchTypes,
   ShoppingCartItem,
+  SHOPPING_CART_ADD_ITEM,
   SHOPPING_CART_EMPTY,
   SHOPPING_CART_REMOVE_ITEM,
 } from "./ShoppingCartActionTypes";
@@ -15,6 +16,10 @@ export const addItemToShoppingCart = (item: ShoppingCartItem) => {
       // } else {
       //     add the given item and quantity to the cart
       // }
+      dispatch({
+        type: SHOPPING_CART_ADD_ITEM,
+        payload: item,
+      });
     } catch (error) {
       // maybe add in some actual error handling later
       console.log(error.message);

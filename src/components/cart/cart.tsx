@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import classes from "./cart.module.scss";
-import { RootStore } from "../../Store";
+import { RootStore } from "../../redux-store";
 import CartItem from "./cartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-import { emptyCart } from "../../actions/ShoppingCartActions";
+import { emptyCart } from "../../redux-store/actions/ShoppingCartActions";
 
 type CartProps = {
   open: boolean;
@@ -16,6 +16,7 @@ const Cart: React.FC<CartProps> = (props) => {
   const { shoppingCartItems } = useSelector(
     (state: RootStore) => state.shoppingCart
   );
+  console.log("CART STATE", shoppingCartItems);
   const cartEmpty = shoppingCartItems?.length === 0;
   const checkout = () => {
     dispatch(emptyCart());

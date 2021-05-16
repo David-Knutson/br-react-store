@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Image, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../actions/ProductsActions";
-import { ShoppingCartItem } from "../../actions/ShoppingCartActionTypes";
+import { getProducts } from "../../redux-store/actions/ProductsActions";
+import { addItemToShoppingCart } from "../../redux-store/actions/ShoppingCartActions";
+import { ShoppingCartItem } from "../../redux-store/actions/ShoppingCartActionTypes";
 import { MOCKDATA } from "../../mockdata/MockData";
-import { RootStore } from "../../Store";
+import { RootStore } from "../../redux-store";
 import CenteredSpinnerComponent from "../CenteredSpinner";
 import QuantityPicker from "../QuantityPicker";
 
@@ -28,10 +29,10 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
   const { loading, error, products } = useSelector(
     (state: RootStore) => state.products
   );
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  // console.log()
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, [dispatch]);
   //====================================================================
   const productDataArray = MOCKDATA.filter(
     (product) => product.id === productId
@@ -43,13 +44,13 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
 
   const addProductToCart = (cartItem: ShoppingCartItem) => {
     console.log("Item added to cart", cartItem);
-    //show side panel
+    dispatch(addItemToShoppingCart(cartItem));
   };
 
   if (loading) {
     return <CenteredSpinnerComponent />;
   } else if (error) {
-    return <Alert variant="danger">There was an error.</Alert>;
+    return <Alert variant="danger">{error.toString()}</Alert>;
   }
   return (
     <>

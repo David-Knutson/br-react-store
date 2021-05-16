@@ -1,4 +1,4 @@
-import { ProductsEntity } from "../actions/ProductsActionTypes";
+import { ProductsEntity } from "../redux-store/actions/ProductsActionTypes";
 
 export const MOCKDATA: ProductsEntity = [
   {

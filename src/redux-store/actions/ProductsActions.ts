@@ -43,6 +43,7 @@ export const getProducts = () => {
         console.log("RESPONSE", response.data);
       }
     } catch (error) {
+      console.log("Caught an error");
       dispatch({
         type: PRODUCTS_ERROR,
         payload: error,

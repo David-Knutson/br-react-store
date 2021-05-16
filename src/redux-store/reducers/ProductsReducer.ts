@@ -1,3 +1,4 @@
+import { initialState } from "..";
 import {
   ProductsDispatchTypes,
   ProductsEntity,
@@ -20,6 +21,7 @@ const defaultState: DefaultStateInterface = {
 
 const productsReducer = (
   state: DefaultStateInterface = defaultState,
+  // state: DefaultStateInterface = initialState.products,
   action: ProductsDispatchTypes
 ): DefaultStateInterface => {
   switch (action.type) {
