@@ -1,0 +1,21 @@
+.cart {
+    position: fixed;
+    z-index: 102;
+    background-color: white;
+    height: 100%;
+    width: 400px;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 16px;
+    right: 0%;
+    top: 57px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    transform: translateX(100vh);
+    opacity: 0;
+}
+
+.open {  
+    transform: translateX(0);
+    opacity: 1;
+}
