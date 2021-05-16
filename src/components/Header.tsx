@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {productData.map((product) => (
-              <Nav.Link href={`/product/?id=${product.id}`}>
+              <Nav.Link href={`/product/?id=${product.id}`} key={product.id}>
                 {product.name}
               </Nav.Link>
             ))}

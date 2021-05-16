@@ -1,6 +1,6 @@
 export const SHOPPING_CART_ADD_ITEM = "SHOPPING_CART_ADD_ITEM";
 export const SHOPPING_CART_REMOVE_ITEM = "SHOPPING_CART_REMOVE_ITEM";
-export const SHOPPING_CART_CHECKOUT = "SHOPPING_CART_CHECKOUT";
+export const SHOPPING_CART_EMPTY = "SHOPPING_CART_EMPTY";
 
 export type ShoppingCart = {
   shoppingCartItems?: Array<ShoppingCartItem>;
@@ -25,11 +25,11 @@ export interface ShoppingCartRemoveItem {
   payload: number;
 }
 
-export interface ShoppingCartCheckout {
-  type: typeof SHOPPING_CART_CHECKOUT;
+export interface ShoppingCartEmpty {
+  type: typeof SHOPPING_CART_EMPTY;
 }
 
 export type ShoppingCartDispatchTypes =
   | ShoppingCartAddItem
   | ShoppingCartRemoveItem
-  | ShoppingCartCheckout;
+  | ShoppingCartEmpty;

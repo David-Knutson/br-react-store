@@ -2,7 +2,7 @@ import {
   ShoppingCart,
   ShoppingCartDispatchTypes,
   SHOPPING_CART_ADD_ITEM,
-  SHOPPING_CART_CHECKOUT,
+  SHOPPING_CART_EMPTY,
   SHOPPING_CART_REMOVE_ITEM,
 } from "../actions/ShoppingCartActionTypes";
 
@@ -78,7 +78,7 @@ const shoppingCartReducer = (
         ),
       };
 
-    case SHOPPING_CART_CHECKOUT:
+    case SHOPPING_CART_EMPTY:
       // pretty confident this case is correct
       return {
         ...state,

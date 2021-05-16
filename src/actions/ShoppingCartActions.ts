@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import {
   ShoppingCartDispatchTypes,
   ShoppingCartItem,
+  SHOPPING_CART_EMPTY,
   SHOPPING_CART_REMOVE_ITEM,
 } from "./ShoppingCartActionTypes";
 // TO DO ADD ITEM TO SHOPPING CART
@@ -26,6 +27,14 @@ export const removeItemFromCart = (id: number) => {
     dispatch({
       type: SHOPPING_CART_REMOVE_ITEM,
       payload: id,
+    });
+  };
+};
+
+export const emptyCart = () => {
+  return (dispatch: Dispatch<ShoppingCartDispatchTypes>) => {
+    dispatch({
+      type: SHOPPING_CART_EMPTY,
     });
   };
 };
