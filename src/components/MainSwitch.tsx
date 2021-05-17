@@ -1,23 +1,19 @@
 import React from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import ProductsComponent from "./pages/ProductsComponent";
+import ProductDescription from "./pages/ProductDescription";
 
 interface MainSwitchProps {}
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
-const MainSwitch: React.FC<MainSwitchProps> = (props) => {
-  let query = useQuery();
+const MainSwitch: React.FC<MainSwitchProps> = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
 
       <Route
-        path="/product/"
-        render={(props) => <ProductsComponent productId={query.get("id")!} />}
+        exact
+        path="/product/:id"
+        render={(props) => <ProductDescription key={props.match.params.id} />}
       />
     </Switch>
   );

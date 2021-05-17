@@ -3,49 +3,38 @@ import { Dispatch } from "redux";
 import {
   ProductsDispatchTypes,
   ProductsEntity,
-  PRODUCTS_ERROR,
-  PRODUCTS_LOADING,
-  PRODUCTS_SUCCESS,
+  PRODUCTS_LOADING_ERROR,
+  PRODUCTS_ARE_LOADING,
+  PRODUCTS_LOADED_SUCCESS,
 } from "./ProductsActionTypes";
+
+const { REACT_APP_BACKEND_ENDPOINT } = process.env;
 
 export const getProducts = () => {
   return async (dispatch: Dispatch<ProductsDispatchTypes>) => {
     try {
       dispatch({
-        type: PRODUCTS_LOADING,
+        type: PRODUCTS_ARE_LOADING,
       });
 
-      // fetch(
-      //   // "https://drive.google.com/uc?export=view&id=13tTE7bKIN2XZ6BGLU3Yr9jNjHSWoA_r9",
-      //   "https://pastebin.com/raw/2PchwPsC",
-      //   {
-      //     // mode: *cors,
-      //     // referrerPolicy: "no-referrer-when-downgrade",
-      //   }
-      // ).then((res) => console.log("FETCHHHHHHHHH", res));
       const response = await axios.get<ProductsEntity>(
-        "https://drive.google.com/uc?export=view&id=13tTE7bKIN2XZ6BGLU3Yr9jNjHSWoA_r9"
-        // "https://pastebin.com/raw/2PchwPsC"
+        `${REACT_APP_BACKEND_ENDPOINT}`
       );
 
       if (!response) {
         dispatch({
-          type: PRODUCTS_ERROR,
-          payload: "There was an error when trying to fetch the product data",
+          type: PRODUCTS_LOADING_ERROR,
+          payload: "Error when loading product data",
         });
-        console.log("NO RESPONSE FROM SERVER");
       } else {
         dispatch({
-          type: PRODUCTS_SUCCESS,
+          type: PRODUCTS_LOADED_SUCCESS,
           payload: response.data,
         });
-
-        console.log("RESPONSE", response.data);
       }
     } catch (error) {
-      console.log("Caught an error");
       dispatch({
-        type: PRODUCTS_ERROR,
+        type: PRODUCTS_LOADING_ERROR,
         payload: error,
       });
     }

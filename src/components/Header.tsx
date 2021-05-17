@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { MOCKDATA } from "../mockdata/MockData";
+import { RootStore } from "../redux-store";
+import { ToggleCart } from "../redux-store/actions/ShoppingCartActions";
 import Cart from "./cart/cart";
 
 const Header: React.FC = () => {
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  const cartButtonClicked = () => setIsCartVisible(!isCartVisible);
+  const dispatch = useDispatch();
+
+  const { isOpen } = useSelector((state: RootStore) => state.shoppingCart);
+
+  const cartButtonClicked = () => {
+    dispatch(ToggleCart());
+  };
+
   const productData = MOCKDATA;
+
   return (
     <>
       <Navbar className="px-4 shadow-sm" bg="white" expand="lg">
@@ -18,11 +28,9 @@ const Header: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             {productData.map((product) => (
-              // supposed to use to instead of href
-              // <Nav.Link href={`/product/?id=${product.id}`} key={product.id}>
               <NavLink
                 className="mx-4"
-                to={`/product/?id=${product.id}`}
+                to={`/product/${product.id}`}
                 key={product.id}
               >
                 {product.name}
@@ -35,7 +43,7 @@ const Header: React.FC = () => {
           <Button onClick={cartButtonClicked}>View Cart</Button>
         </Nav>
       </Navbar>
-      <Cart open={isCartVisible} />
+      <Cart open={isOpen} />
     </>
   );
 };

@@ -16,12 +16,14 @@ const Cart: React.FC<CartProps> = (props) => {
   const { shoppingCartItems } = useSelector(
     (state: RootStore) => state.shoppingCart
   );
-  console.log("CART STATE", shoppingCartItems);
+
   const cartEmpty = shoppingCartItems?.length === 0;
+
   const checkout = () => {
     dispatch(emptyCart());
     window.alert("Thank you for your purchase.");
   };
+
   return (
     <div className={classes.cart + " " + (props.open ? classes.open : "")}>
       {cartEmpty && (
@@ -31,7 +33,9 @@ const Cart: React.FC<CartProps> = (props) => {
         </div>
       )}
       {shoppingCartItems &&
-        shoppingCartItems.map((item) => <CartItem item={item} key={item.id} />)}
+        shoppingCartItems.map((item) => (
+          <CartItem item={item} key={item.product.id} />
+        ))}
       <Button
         block
         variant={cartEmpty ? "secondary" : "primary"}

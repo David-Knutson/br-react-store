@@ -1,14 +1,14 @@
 import {
   ProductsDispatchTypes,
   ProductsEntity,
-  PRODUCTS_ERROR,
-  PRODUCTS_LOADING,
-  PRODUCTS_SUCCESS,
+  PRODUCTS_LOADING_ERROR,
+  PRODUCTS_ARE_LOADING,
+  PRODUCTS_LOADED_SUCCESS,
 } from "../actions/ProductsActionTypes";
 
 interface DefaultStateInterface {
   loading: boolean;
-  error: string | undefined;
+  error?: string;
   products?: ProductsEntity;
 }
 
@@ -20,24 +20,24 @@ const defaultState: DefaultStateInterface = {
 
 const productsReducer = (
   state: DefaultStateInterface = defaultState,
-  // state: DefaultStateInterface = initialState.products,
   action: ProductsDispatchTypes
 ): DefaultStateInterface => {
   switch (action.type) {
-    case PRODUCTS_ERROR:
+    case PRODUCTS_LOADING_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
 
-    case PRODUCTS_LOADING:
+    case PRODUCTS_ARE_LOADING:
       return {
         ...state,
         loading: true,
         error: undefined,
       };
-    case PRODUCTS_SUCCESS:
+
+    case PRODUCTS_LOADED_SUCCESS:
       return {
         ...state,
         loading: false,

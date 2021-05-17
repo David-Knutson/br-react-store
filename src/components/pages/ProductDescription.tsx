@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux-store/actions/ProductsActions";
@@ -9,27 +10,35 @@ import { RootStore } from "../../redux-store";
 import CenteredSpinnerComponent from "../CenteredSpinner";
 import QuantityPicker from "../QuantityPicker";
 
-type ProductsComponentProps = {
-  productId: string;
-};
+type ProductDescriptionProps = {};
 
-const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
+const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
   const [quantity, setQuantity] = useState<number>(1);
+
+  let { id } = useParams<any>();
+
   const decrementQuantity = () => {
     if (quantity !== 1) {
       setQuantity(quantity - 1);
     }
   };
+
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
   };
-  const productId = parseInt(props.productId, 10);
+
+  const productId = parseInt(id, 10);
+
   const dispatch = useDispatch();
-  // need to add products back to this selector loading, error, products
+
   const { loading, error, products } = useSelector(
     (state: RootStore) => state.products
   );
-  // console.log()
+
+  // useEffect(() => setQuantity(1), [id]);
+
+  // Ideally we would be using the below useEffect to fetch the data via redux
+  // but the endpoint doesn't seem to be working as expected
   // useEffect(() => {
   //   dispatch(getProducts());
   // }, [dispatch]);
@@ -38,12 +47,9 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
     (product) => product.id === productId
   );
   const productData = productDataArray[0];
-  // console.log("productAData", productData);
-
   //====================================================================
 
   const addProductToCart = (cartItem: ShoppingCartItem) => {
-    console.log("Item added to cart", cartItem);
     dispatch(addItemToShoppingCart(cartItem));
   };
 
@@ -96,11 +102,8 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
             size="lg"
             onClick={() =>
               addProductToCart({
-                id: productData.id,
-                name: productData.name,
+                product: productData,
                 quantity: quantity,
-                imageUrl: productData.imageUrl,
-                price: productData.price,
               })
             }
           >
@@ -112,4 +115,4 @@ const ProductsComponent: React.FC<ProductsComponentProps> = (props) => {
   );
 };
 
-export default ProductsComponent;
+export default ProductDescription;
