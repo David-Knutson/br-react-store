@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 5.  Build the project `yarn build`
 6.  Start the server `yarn start`
 
-**Please note that there appears to be an issue with the mock API endpoint provided (CORS Network Errors and 302 redirects). There is a useEffect hook that is commented out. If you uncomment the useEffect and reinstate the missing imports the React App will correctly handle any errors, but it will not fetch the data as expected. I have included a MockData.ts file to work around this issue and to further demonstrate my handling of app state using Redux.**
+**Please note that there appears to be an issue with the mock API endpoint provided (CORS Network Errors and 302 redirects). There is a useEffect hook that is commented out in ProductDescription.tsx. If you uncomment the useEffect and reinstate the missing imports the React App will correctly handle any errors, but it will not fetch the data as expected. I have included a MockData.ts file to work around this issue and to further demonstrate my handling of app state using Redux.**
 
 ## Available Scripts
 
