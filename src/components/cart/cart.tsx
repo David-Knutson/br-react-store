@@ -5,7 +5,8 @@ import { RootStore } from "../../redux-store";
 import CartItem from "./cartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { FaShoppingCart } from "react-icons/fa";
-import { emptyCart } from "../../redux-store/actions/ShoppingCartActions";
+import { ToggleCart } from "../../redux-store/actions/ShoppingCartActions";
+import { useHistory } from "react-router";
 
 type CartProps = {
   open: boolean;
@@ -30,7 +31,8 @@ type CartProps = {
 
 const Cart: React.FC<CartProps> = (props) => {
   const dispatch = useDispatch();
-  const { shoppingCartItems } = useSelector(
+  const history = useHistory();
+  const { shoppingCartItems, total, isOpen } = useSelector(
     (state: RootStore) => state.shoppingCart
   );
 
@@ -42,9 +44,15 @@ const Cart: React.FC<CartProps> = (props) => {
 
   const cartEmpty = shoppingCartItems?.length === 0;
 
-  const checkout = () => {
-    dispatch(emptyCart());
-    window.alert("Thank you for your purchase.");
+  // const checkout = () => {
+  //   dispatch(emptyCart());
+  //   window.alert("Thank you for your purchase.");
+  // };
+  const goToCheckout = () => {
+    if (isOpen) {
+      dispatch(ToggleCart());
+    }
+    history.push("/checkout");
   };
 
   return (
@@ -62,14 +70,23 @@ const Cart: React.FC<CartProps> = (props) => {
         shoppingCartItems.map((item) => (
           <CartItem item={item} key={item.product.id} />
         ))}
-      <Button
+      {/* <Button
         block
         variant={cartEmpty ? "secondary" : "primary"}
         disabled={cartEmpty}
         size="lg"
         onClick={checkout}
       >
-        Checkout
+        {total > 0 ? <>Checkout ${total.toFixed(2)}</> : "Checkout"}
+      </Button> */}
+      <Button
+        block
+        variant={cartEmpty ? "secondary" : "primary"}
+        disabled={cartEmpty}
+        size="lg"
+        onClick={goToCheckout}
+      >
+        {total > 0 ? <>Checkout ${total.toFixed(2)}</> : "Checkout"}
       </Button>
     </div>
   );

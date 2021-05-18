@@ -7,6 +7,7 @@ export const TOGGLE_SHOPPING_CART = "TOGGLE_SHOPPING_CART";
 
 export type ShoppingCart = {
   shoppingCartItems?: Array<ShoppingCartItem>;
+  total: number;
   isOpen: boolean;
 };
 
@@ -22,7 +23,7 @@ export interface ShoppingCartAddItem {
 
 export interface ShoppingCartRemoveItem {
   type: typeof SHOPPING_CART_REMOVE_ITEM;
-  payload: number;
+  payload: ShoppingCartItem;
 }
 
 export interface ShoppingCartEmpty {

@@ -21,11 +21,11 @@ export const addItemToShoppingCart = (item: ShoppingCartItem) => {
   };
 };
 
-export const removeItemFromCart = (id: number) => {
+export const removeItemFromCart = (item: ShoppingCartItem) => {
   return (dispatch: Dispatch<ShoppingCartDispatchTypes>) => {
     dispatch({
       type: SHOPPING_CART_REMOVE_ITEM,
-      payload: id,
+      payload: item,
     });
   };
 };

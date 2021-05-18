@@ -13,7 +13,7 @@ const CartItem: React.FC<CartItemProps> = (props) => {
   const dispatch = useDispatch();
 
   const removeItem = () => {
-    dispatch(removeItemFromCart(props.item.product.id));
+    dispatch(removeItemFromCart(props.item));
   };
 
   return (

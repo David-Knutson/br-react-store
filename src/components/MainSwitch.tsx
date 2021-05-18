@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import Checkout from "./pages/checkout/Checkout";
 import Home from "./pages/Home";
 import ProductDescription from "./pages/ProductDescription";
 
@@ -9,6 +10,7 @@ const MainSwitch: React.FC<MainSwitchProps> = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route exact path="/checkout" component={Checkout} />
 
       <Route
         exact

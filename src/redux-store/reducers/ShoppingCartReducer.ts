@@ -10,6 +10,7 @@ import {
 const initialState: ShoppingCart = {
   shoppingCartItems: [],
   isOpen: false,
+  total: 0,
 };
 
 const shoppingCartReducer = (
@@ -34,12 +35,20 @@ const shoppingCartReducer = (
               : item
           ),
           isOpen: true,
+          total:
+            state.total !== 0
+              ? state.total +
+                action.payload.quantity * action.payload.product.price
+              : action.payload.quantity * action.payload.product.price,
         };
       } else {
         return {
           ...state,
           shoppingCartItems: state.shoppingCartItems?.concat(action.payload),
           isOpen: true,
+          total:
+            state.total +
+            action.payload.product.price * action.payload.quantity,
         };
       }
 
@@ -47,14 +56,17 @@ const shoppingCartReducer = (
       return {
         ...state,
         shoppingCartItems: state.shoppingCartItems?.filter(
-          (item) => item.product.id !== action.payload
+          (item) => item.product.id !== action.payload.product.id
         ),
+        total:
+          state.total - action.payload.product.price * action.payload.quantity,
       };
 
     case SHOPPING_CART_EMPTY:
       return {
         ...state,
         shoppingCartItems: [],
+        total: 0,
       };
 
     case TOGGLE_SHOPPING_CART:
