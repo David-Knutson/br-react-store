@@ -7,10 +7,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 0.  Get [node](https://nodejs.org/en/)
 1.  Get yarn `npm install -g yarn`
 2.  Clone the repo `git clone https://github.com/David-Knutson/br-react-store.git && cd br-react-store`
-3.  Create .env file with the const REACT_APP_BACKEND_ENDPOINT=yourEndPoint
+3.  Create a .env file with the REACT_APP_BACKEND_ENDPOINT=yourEndPoint
 4.  Initialize the project `yarn --init`
 5.  Build the project `yarn build`
 6.  Start the server `yarn start`
+
+**Please note that there appears to be an issue with the mock API endpoint provided (CORS Network Errors and 302 redirects). There is a useEffect hook that is commented out. If you uncomment the useEffect and reinstate the missing imports the React App will correctly handle any errors, but it will not fetch the data as expected. I have included a MockData.ts file to work around this issue and to further demonstrate my handling of app state using Redux.**
 
 ## Available Scripts
 

@@ -11,11 +11,34 @@ type CartProps = {
   open: boolean;
 };
 
+// let useClickOutside = (handler: any) => {
+//   let domNode = useRef<HTMLDivElement>(null);
+//   useEffect(() => {
+//     let maybeHandler = (event: any) => {
+//       if (domNode.current && !!domNode.current.contains(event.target)) {
+//         handler();
+//       }
+//     };
+//     document.addEventListener("mousedown", handler);
+
+//     return () => {
+//       document.removeEventListener("mousedown", handler);
+//     };
+//   });
+//   return domNode;
+// };
+
 const Cart: React.FC<CartProps> = (props) => {
   const dispatch = useDispatch();
   const { shoppingCartItems } = useSelector(
     (state: RootStore) => state.shoppingCart
   );
+
+  // let domNode = useClickOutside(() => {
+  //   if (isOpen) {
+  //     dispatch(ToggleCart());
+  //   }
+  // });
 
   const cartEmpty = shoppingCartItems?.length === 0;
 
@@ -25,7 +48,10 @@ const Cart: React.FC<CartProps> = (props) => {
   };
 
   return (
-    <div className={classes.cart + " " + (props.open ? classes.open : "")}>
+    <div
+      // ref={domNode}
+      className={classes.cart + " " + (props.open ? classes.open : "")}
+    >
       {cartEmpty && (
         <div className="text-center my-5">
           <FaShoppingCart color="gray" size="70" />

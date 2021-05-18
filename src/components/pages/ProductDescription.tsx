@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux-store/actions/ProductsActions";
 import { addItemToShoppingCart } from "../../redux-store/actions/ShoppingCartActions";
 import { ShoppingCartItem } from "../../redux-store/actions/ShoppingCartActionTypes";
 import { MOCKDATA } from "../../mockdata/MockData";
@@ -31,11 +30,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const { loading, error, products } = useSelector(
-    (state: RootStore) => state.products
-  );
-
-  // useEffect(() => setQuantity(1), [id]);
+  const { loading, error } = useSelector((state: RootStore) => state.products);
 
   // Ideally we would be using the below useEffect to fetch the data via redux
   // but the endpoint doesn't seem to be working as expected
