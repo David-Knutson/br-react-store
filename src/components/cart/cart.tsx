@@ -70,15 +70,6 @@ const Cart: React.FC<CartProps> = (props) => {
         shoppingCartItems.map((item) => (
           <CartItem item={item} key={item.product.id} />
         ))}
-      {/* <Button
-        block
-        variant={cartEmpty ? "secondary" : "primary"}
-        disabled={cartEmpty}
-        size="lg"
-        onClick={checkout}
-      >
-        {total > 0 ? <>Checkout ${total.toFixed(2)}</> : "Checkout"}
-      </Button> */}
       <Button
         block
         variant={cartEmpty ? "secondary" : "primary"}

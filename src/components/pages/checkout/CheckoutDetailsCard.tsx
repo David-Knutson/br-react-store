@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Row, Col } from "react-bootstrap";
 
 interface CheckoutDetailsCardProps {
   total: number;
@@ -22,20 +22,58 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
           </Button>
         </Card.Title>
         <Card.Text>
-          <span className="font-weight-bold">Subtotal</span>
+          <Row>
+            <Col className="text-left">
+              <span className="font-weight-bold">Subtotal</span>
+            </Col>
+            <Col className="text-right">
+              <span>90.90</span>
+            </Col>
+          </Row>
         </Card.Text>
         <Card.Text>
-          <span className="font-weight-bold">Est. Sales tax</span>
+          <Row>
+            <Col className="text-left">
+              <span className="font-weight-bold">Est. Sales tax</span>
+            </Col>
+            <Col className="text-right">
+              <span>90.90</span>
+            </Col>
+          </Row>
         </Card.Text>
         <Card.Text>
-          <span className="font-weight-bold">Service fee</span>
+          <Row>
+            <Col className="text-left">
+              <span className="font-weight-bold">Service fee</span>
+            </Col>
+            <Col className="text-right">
+              <span>90.90</span>
+            </Col>
+          </Row>
         </Card.Text>
         <hr />
         <Card.Text>
-          <span className="font-weight-bold">Total</span>
+          <Row>
+            <Col className="text-left">
+              <span className="font-weight-bold">Total</span>
+            </Col>
+            <Col className="text-right">
+              <span>90.90</span>
+            </Col>
+          </Row>
         </Card.Text>
         <Card.Text>
-          <span className="font-weight-bold text-primary">Total Savings</span>
+          <Row>
+            <Col className="text-left">
+              <span className="font-weight-bold text-primary">
+                Total Savings
+              </span>
+            </Col>
+            <Col className="text-right">
+              <span>90.90</span>
+            </Col>
+          </Row>
+
           <hr />
           <Button
             block

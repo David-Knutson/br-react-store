@@ -9,8 +9,6 @@ interface QuantityPickerProps {
 }
 
 const QuantityPicker: React.FC<QuantityPickerProps> = (props) => {
-  console.log("RERENDER QuantityPicker");
-
   return (
     <>
       <ButtonGroup aria-label="Basic example">

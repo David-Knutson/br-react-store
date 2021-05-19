@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../../../redux-store";
 import { emptyCart } from "../../../redux-store/actions/ShoppingCartActions";
 import CartItem from "../../cart/cartItem";
+import ApplyDiscountModal from "./ApplyDiscountModal";
 import CheckoutDetailsCard from "./CheckoutDetailsCard";
 
 const Checkout: React.FC = () => {
@@ -53,20 +54,7 @@ const Checkout: React.FC = () => {
           )}
         </Col>
       </Row>
-      <Modal show={showPromoModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ApplyDiscountModal show={showPromoModal} onHide={handleClose} />
     </>
   );
 };
