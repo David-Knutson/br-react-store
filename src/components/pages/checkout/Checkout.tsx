@@ -33,18 +33,18 @@ const Checkout: React.FC = () => {
           <FaShoppingCart color="gray" size="70" />
           <h3 className="my-4 text-muted">Your cart is empty</h3>
           <br />
-          <p>Please add some items to your cart to continue.</p>
+          <span>Please add some items to your cart to continue.</span>
         </div>
       )}
 
       <Row>
-        <Col xs={12} md={8}>
+        <Col xs={12} lg={8}>
           {shoppingCartItems &&
             shoppingCartItems.map((item) => (
               <CartItem item={item} key={item.product.id} />
             ))}
         </Col>
-        <Col xs={12} md={4}>
+        <Col xs={12} lg={4}>
           {!cartEmpty && (
             <CheckoutDetailsCard
               total={total}

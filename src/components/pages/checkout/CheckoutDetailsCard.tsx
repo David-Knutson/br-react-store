@@ -8,6 +8,11 @@ interface CheckoutDetailsCardProps {
 }
 
 const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
+  const subtotal = props.total;
+  const estSalesTax = props.total * 0.07;
+  const serviceFee = props.total * 0.05;
+  const totalAmount = subtotal + estSalesTax + serviceFee;
+
   return (
     <Card className="shadow-lg">
       <Card.Body>
@@ -18,7 +23,7 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
             variant="primary"
             onClick={() => props.checkout()}
           >
-            Confirm Payment ${props.total.toFixed(2)}
+            Confirm Payment ${totalAmount.toFixed(2)}
           </Button>
         </Card.Title>
         <Card.Text>
@@ -27,7 +32,7 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
               <span className="font-weight-bold">Subtotal</span>
             </Col>
             <Col className="text-right">
-              <span>90.90</span>
+              <span>{subtotal.toFixed(2)}</span>
             </Col>
           </Row>
         </Card.Text>
@@ -37,7 +42,7 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
               <span className="font-weight-bold">Est. Sales tax</span>
             </Col>
             <Col className="text-right">
-              <span>90.90</span>
+              <span>{estSalesTax.toFixed(2)}</span>
             </Col>
           </Row>
         </Card.Text>
@@ -47,7 +52,7 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
               <span className="font-weight-bold">Service fee</span>
             </Col>
             <Col className="text-right">
-              <span>90.90</span>
+              <span>{serviceFee.toFixed(2)}</span>
             </Col>
           </Row>
         </Card.Text>
@@ -58,7 +63,7 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
               <span className="font-weight-bold">Total</span>
             </Col>
             <Col className="text-right">
-              <span>90.90</span>
+              <span>{totalAmount.toFixed(2)}</span>
             </Col>
           </Row>
         </Card.Text>
@@ -70,20 +75,19 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
               </span>
             </Col>
             <Col className="text-right">
-              <span>90.90</span>
+              <span>$0.00</span>
             </Col>
           </Row>
-
           <hr />
-          <Button
-            block
-            className="text-center text-success"
-            variant="link"
-            onClick={() => props.addPromo()}
-          >
-            Add promo or gift card
-          </Button>
         </Card.Text>
+        <Button
+          block
+          className="text-center text-success"
+          variant="link"
+          onClick={() => props.addPromo()}
+        >
+          Add promo or gift card
+        </Button>
       </Card.Body>
     </Card>
   );
