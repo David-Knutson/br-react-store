@@ -3,11 +3,18 @@ export const PRODUCTS_LOADING_ERROR = "PRODUCTS_LOADING_ERROR";
 export const PRODUCTS_LOADED_SUCCESS = "PRODUCTS_LOADED_SUCCESS";
 
 export type ProductEntity = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  imageUrl: string;
+  // id: number;
+  // name: string;
+  // price: number;
+  // description: string;
+  // imageUrl: string;
+  category: string;
+description: string;
+id: number;
+image: string;
+price: number;
+rating: {rate: number; count: number;}
+title: string;
 };
 
 export type ProductsEntity = Array<ProductEntity>;

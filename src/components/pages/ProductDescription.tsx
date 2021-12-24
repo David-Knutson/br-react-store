@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Image, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToShoppingCart } from "../../redux-store/actions/ShoppingCartActions";
 import { ShoppingCartItem } from "../../redux-store/actions/ShoppingCartActionTypes";
-import { MOCKDATA } from "../../mockdata/MockData";
 import { RootStore } from "../../redux-store";
 import CenteredSpinnerComponent from "../CenteredSpinner";
 import QuantityPicker from "../QuantityPicker";
+import { getProducts } from "../../redux-store/actions/ProductsActions";
 
 type ProductDescriptionProps = {};
 
@@ -30,18 +30,16 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const { loading, error } = useSelector((state: RootStore) => state.products);
+  const { loading, error, products } = useSelector((state: RootStore) => state.products);
 
-  // Ideally we would be using the below useEffect to fetch the data via redux
-  // but the endpoint doesn't seem to be working as expected
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
   //====================================================================
-  const productDataArray = MOCKDATA.filter(
+  const productDataArray = products?.filter(
     (product) => product.id === productId
   );
-  const productData = productDataArray[0];
+  const productData = productDataArray?productDataArray[0]:undefined;
   //====================================================================
 
   const addProductToCart = (cartItem: ShoppingCartItem) => {
@@ -57,24 +55,24 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
     <>
       <Row>
         <Col>
-          <h1>{productData.name}</h1>
+          <h1>{productData?.title}</h1>
         </Col>
       </Row>
       <Row className="mb-2 mt-4">
         <Col xs={12} sm={12} md={6}>
-          {productData.imageUrl ? (
-            <Image className="shadow" src={productData.imageUrl} fluid />
+          {productData?.image ? (
+            <Image className="shadow" src={productData?.image} fluid />
           ) : (
             <CenteredSpinnerComponent />
           )}
         </Col>
         <Col className="pl-md-5 pt-5 pt-sm-5 pt-md-0" xs={12} sm={12} md={6}>
-          <p>{productData.description}</p>
+          <p>{productData?.description}</p>
         </Col>
       </Row>
       <Row className="mt-5">
         <Col>
-          <h4>${productData.price}</h4>
+          <h4>${productData?.price}</h4>
         </Col>
       </Row>
       <Row className="mt-4">
@@ -97,7 +95,8 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
             size="lg"
             onClick={() =>
               addProductToCart({
-                product: productData,
+                // need to fix this
+                product: productData!,
                 quantity: quantity,
               })
             }

@@ -19,11 +19,11 @@ const CartItem: React.FC<CartItemProps> = (props) => {
   return (
     <div className={classes.container + " shadow-sm"}>
       <div className={classes.image}>
-        <img src={props.item.product.imageUrl} alt="product" />
+        <img src={props.item.product.image} alt="product" />
       </div>
       <div className={classes.infoContainer}>
         <div className={classes.name}>
-          {props.item.quantity}x {props.item.product.name}
+          {props.item.quantity}x {props.item.product.title}
         </div>
         <div className={classes.price}>${props.item.product.price} ea.</div>
         <div className={classes.xButton + " clickable"} onClick={removeItem}>

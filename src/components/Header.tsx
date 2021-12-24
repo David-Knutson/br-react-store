@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                 to={`/product/${product.id}`}
                 key={product.id}
               >
-                {product.name}
+                {product.title}
               </NavLink>
             ))}
           </Nav>
