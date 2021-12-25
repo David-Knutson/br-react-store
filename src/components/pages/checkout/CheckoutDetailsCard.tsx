@@ -17,14 +17,16 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
     <Card className="shadow-lg">
       <Card.Body>
         <Card.Title>
+          <div className="d-grid">
           <Button
-            block
+            // block
             size="lg"
             variant="primary"
             onClick={() => props.checkout()}
           >
             Confirm Payment ${totalAmount.toFixed(2)}
           </Button>
+          </div>
         </Card.Title>
         <Card.Text>
           <Row>
@@ -80,14 +82,16 @@ const CheckoutDetailsCard: React.FC<CheckoutDetailsCardProps> = (props) => {
           </Row>
           <hr />
         </Card.Text>
+        <div className="d-grid">
         <Button
-          block
+          // block
           className="text-center text-success"
           variant="link"
           onClick={() => props.addPromo()}
         >
           Add promo or gift card
         </Button>
+        </div>
       </Card.Body>
     </Card>
   );

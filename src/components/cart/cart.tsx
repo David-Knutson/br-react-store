@@ -70,8 +70,9 @@ const Cart: React.FC<CartProps> = (props) => {
         shoppingCartItems.map((item) => (
           <CartItem item={item} key={item.product.id} />
         ))}
+        <div className="d-grid">
       <Button
-        block
+        // block
         variant={cartEmpty ? "secondary" : "primary"}
         disabled={cartEmpty}
         size="lg"
@@ -79,6 +80,7 @@ const Cart: React.FC<CartProps> = (props) => {
       >
         {total > 0 ? <>Checkout ${total.toFixed(2)}</> : "Checkout"}
       </Button>
+      </div>
     </div>
   );
 };

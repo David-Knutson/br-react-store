@@ -28,9 +28,11 @@ const ApplyDiscountModal: React.FC<ApplyDiscountModalProps> = (props) => {
               <Form.Group>
                 <Form.Control type="email" placeholder="Promo or Gift Card" />
               </Form.Group>
-              <Button block size="lg" variant="primary" onClick={() => {}}>
+              <div className="d-grid">
+              <Button size="lg" variant="primary" onClick={() => {}}>
                 Redeem
               </Button>
+              </div>
             </Form>
           </Col>
         </Row>
@@ -40,9 +42,11 @@ const ApplyDiscountModal: React.FC<ApplyDiscountModalProps> = (props) => {
           borderTop: "0 none",
         }}
       >
-        <Button block className="text-center text-success mb-3" variant="link">
+        <div className="d-grid">
+        <Button className="text-center text-success mb-3" variant="link">
           Terms & Conditions apply
         </Button>
+        </div>
       </Modal.Footer>
     </Modal>
   );
