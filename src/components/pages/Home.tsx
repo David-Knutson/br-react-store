@@ -31,15 +31,13 @@ const Home: React.FC = () => {
       </Row>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <Carousel style={{ backgroundColor: "black" }}>
+          <Carousel>
             {products?.map((product) => (
-              <Carousel.Item>
+              <Carousel.Item key={product.id}>
                 <Image
-                  key={product.id}
                   className="d-block w-100"
                   src={product.image}
                   alt={product.title}
-                  // fluid
                   style={{
                     objectFit: "cover",
                     maxHeight: "500px",
@@ -47,7 +45,6 @@ const Home: React.FC = () => {
                 />
                 <Carousel.Caption>
                   <h3>{product.title}</h3>
-                  {/* <p>{product.description}</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
             ))}

@@ -10,16 +10,14 @@ import {
 
 const { REACT_APP_BACKEND_ENDPOINT } = process.env;
 
-export const getProducts = () => {
+export const getProducts = (category?: string) => {
   return async (dispatch: Dispatch<ProductsDispatchTypes>) => {
     try {
       dispatch({
         type: PRODUCTS_ARE_LOADING,
       });
 
-      const response = await axios.get<ProductsEntity>(
-        `${REACT_APP_BACKEND_ENDPOINT}/products`
-      );
+      const response = await fetchProductsData(category);
 
       if (!response) {
         dispatch({
@@ -39,4 +37,23 @@ export const getProducts = () => {
       });
     }
   };
+};
+
+// function fetchProductsData(category?: string) {
+//   if (category) {
+//     return axios.get<ProductsEntity>(
+//       `${REACT_APP_BACKEND_ENDPOINT}/product/${category}`
+//     );
+//   } else {
+//     return axios.get<ProductsEntity>(`${REACT_APP_BACKEND_ENDPOINT}/products`);
+//   }
+// }
+const fetchProductsData = (category?: string) => {
+  if (category) {
+    return axios.get<ProductsEntity>(
+      `${REACT_APP_BACKEND_ENDPOINT}/products/category/${category}`
+    );
+  } else {
+    return axios.get<ProductsEntity>(`${REACT_APP_BACKEND_ENDPOINT}/products`);
+  }
 };

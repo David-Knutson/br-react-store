@@ -16,7 +16,7 @@ export const addItemToShoppingCart = (item: ShoppingCartItem) => {
         payload: item,
       });
     } catch (error) {
-      console.log(error.message);
+      console.log((error as Error).message);
     }
   };
 };

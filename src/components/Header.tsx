@@ -36,8 +36,8 @@ const Header: React.FC = () => {
             {categories?.map((category) => (
               <NavLink
                 className="mx-4"
-                to={`/product/${category}`}
-                // key={category}
+                to={`/products/category/${category}`}
+                key={category}
               >
                 {category.toUpperCase()}
               </NavLink>

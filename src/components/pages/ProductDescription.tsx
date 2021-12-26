@@ -30,7 +30,9 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const { loading, error, products } = useSelector((state: RootStore) => state.products);
+  const { loading, error, products } = useSelector(
+    (state: RootStore) => state.products
+  );
 
   useEffect(() => {
     dispatch(getProducts());
@@ -39,7 +41,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
   const productDataArray = products?.filter(
     (product) => product.id === productId
   );
-  const productData = productDataArray?productDataArray[0]:undefined;
+  const productData = productDataArray ? productDataArray[0] : undefined;
   //====================================================================
 
   const addProductToCart = (cartItem: ShoppingCartItem) => {
@@ -61,7 +63,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = (props) => {
       <Row className="mb-2 mt-4">
         <Col xs={12} sm={12} md={6}>
           {productData?.image ? (
-            <Image className="shadow" src={productData?.image} fluid />
+            <Image className="shadow p-5" src={productData?.image} fluid />
           ) : (
             <CenteredSpinnerComponent />
           )}
