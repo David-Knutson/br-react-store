@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { MOCKDATA } from "../mockdata/MockData";
 import { RootStore } from "../redux-store";
+import { getCategories } from "../redux-store/actions/CategoriesActions";
 import { ToggleCart } from "../redux-store/actions/ShoppingCartActions";
 import Cart from "./cart/cart";
 
@@ -16,7 +16,13 @@ const Header: React.FC = () => {
     dispatch(ToggleCart());
   };
 
-  const productData = MOCKDATA;
+  const { loading, error, categories } = useSelector(
+    (state: RootStore) => state.categories
+  );
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   return (
     <>
@@ -27,13 +33,13 @@ const Header: React.FC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {productData.map((product) => (
+            {categories?.map((category) => (
               <NavLink
                 className="mx-4"
-                to={`/product/${product.id}`}
-                key={product.id}
+                to={`/product/${category}`}
+                // key={category}
               >
-                {product.title}
+                {category.toUpperCase()}
               </NavLink>
             ))}
           </Nav>

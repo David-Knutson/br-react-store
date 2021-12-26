@@ -18,7 +18,7 @@ export const getProducts = () => {
       });
 
       const response = await axios.get<ProductsEntity>(
-        `${REACT_APP_BACKEND_ENDPOINT}`
+        `${REACT_APP_BACKEND_ENDPOINT}/products`
       );
 
       if (!response) {
