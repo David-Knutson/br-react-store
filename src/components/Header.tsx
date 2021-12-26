@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { RootStore } from "../redux-store";
@@ -30,6 +34,20 @@ const Header: React.FC = () => {
         <Navbar.Brand>
           <h2>React Store</h2>
         </Navbar.Brand>
+        {loading && (
+          <>
+            <Spinner animation="grow" size="sm" />
+            <Spinner animation="grow" size="sm" />
+            <Spinner animation="grow" size="sm" />
+            <Spinner animation="grow" size="sm" />
+            Loading Categories...
+          </>
+        )}
+        {error && (
+          <>
+            <Alert variant="danger">{error}. Try refreshing the page.</Alert>
+          </>
+        )}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">

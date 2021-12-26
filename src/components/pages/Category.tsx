@@ -59,6 +59,11 @@ const Category: React.FC<CategoryProps> = () => {
               <Card.Footer
                 className="btn-primary text-center"
                 onClick={() => handleClick(product.id)}
+                // need to move this to a stylesheet
+                style={{
+                  cursor: "pointer",
+                  color: "black",
+                }}
               >
                 View
               </Card.Footer>
