@@ -28,10 +28,10 @@ const ApplyDiscountModal: React.FC<ApplyDiscountModalProps> = (props) => {
               <Form.Group>
                 <Form.Control type="email" placeholder="Promo or Gift Card" />
               </Form.Group>
-              <div className="d-grid">
-              <Button size="lg" variant="primary" onClick={() => {}}>
-                Redeem
-              </Button>
+              <div className="d-grid mt-3">
+                <Button size="lg" variant="primary" onClick={() => {}}>
+                  Redeem
+                </Button>
               </div>
             </Form>
           </Col>
@@ -43,9 +43,9 @@ const ApplyDiscountModal: React.FC<ApplyDiscountModalProps> = (props) => {
         }}
       >
         <div className="d-grid">
-        <Button className="text-center text-success mb-3" variant="link">
-          Terms & Conditions apply
-        </Button>
+          <Button className="text-center text-success mb-3" variant="link">
+            Terms & Conditions apply
+          </Button>
         </div>
       </Modal.Footer>
     </Modal>

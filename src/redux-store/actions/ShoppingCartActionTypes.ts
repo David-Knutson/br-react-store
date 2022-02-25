@@ -9,6 +9,7 @@ export type ShoppingCart = {
   shoppingCartItems?: Array<ShoppingCartItem>;
   total: number;
   isOpen: boolean;
+  itemCount: number;
 };
 
 export type ShoppingCartItem = {

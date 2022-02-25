@@ -1,20 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
+import Badge from "react-bootstrap/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { RootStore } from "../redux-store";
 import { getCategories } from "../redux-store/actions/CategoriesActions";
 import { ToggleCart } from "../redux-store/actions/ShoppingCartActions";
 import Cart from "./cart/cart";
+import { authenticateUser } from "../redux-store/actions/AuthenticationActions";
+import LoginModal from "./modals/LoginModal";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
 
-  const { isOpen } = useSelector((state: RootStore) => state.shoppingCart);
+  const { isOpen, shoppingCartItems } = useSelector(
+    (state: RootStore) => state.shoppingCart
+  );
+
+  // should move this to redux
+  const shoppingCartItemsCount = shoppingCartItems?.reduce(
+    (sum, { quantity }) => sum + quantity,
+    0
+  );
+
+  const loginButtonClicked = () => {
+    // dispatch(authenticateUser());
+    setShow(true);
+  };
+
+  const toggleLoginModal = () => {
+    setShow(!show);
+  };
 
   const cartButtonClicked = () => {
     dispatch(ToggleCart());
@@ -64,10 +86,19 @@ const Header: React.FC = () => {
         </Navbar.Collapse>
 
         <Nav className="justify-content-end">
-          <Button onClick={cartButtonClicked}>View Cart</Button>
+          <Button onClick={toggleLoginModal}>Login</Button>
+          <Button className="ms-2" onClick={cartButtonClicked}>
+            <FaShoppingCart size="20" />
+            {shoppingCartItemsCount !== 0 && (
+              <Badge className="ms-2" bg="white" text="primary">
+                {shoppingCartItemsCount}
+              </Badge>
+            )}
+          </Button>
         </Nav>
       </Navbar>
       <Cart open={isOpen} />
+      <LoginModal show={show} toggle={toggleLoginModal} />
     </>
   );
 };

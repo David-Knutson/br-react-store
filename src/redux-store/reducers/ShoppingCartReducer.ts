@@ -11,6 +11,8 @@ const initialState: ShoppingCart = {
   shoppingCartItems: [],
   isOpen: false,
   total: 0,
+  // need to finish implementing count
+  itemCount: 0,
 };
 
 const shoppingCartReducer = (
